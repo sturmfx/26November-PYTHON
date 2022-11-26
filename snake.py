@@ -1,7 +1,7 @@
 import turtle
 import time
 import random
-
+score = 0
 screen = turtle.Screen()
 screen.title("BASIC SNAKE GAME")
 screen.bgcolor("black")
@@ -16,7 +16,11 @@ snake_head.penup()
 snake_head.goto(0, 0)
 
 snake_food = turtle.Turtle()
-
+snake_food.speed(0)
+snake_food.shape("circle")
+snake_food.color("white")
+snake_food.penup()
+snake_food.goto(0, 200)
 
 def up():
     if snake_head.heading != 270:
@@ -65,6 +69,13 @@ while True:
         time.sleep(3)
         snake_head.goto(0, 0)
         snake_head.heading = 0
+    if snake_head.distance(snake_food) < 10:
+        score = score + 10
+        screen.title("SCORE IS: " + str(score))
+        x = random.randint(-240, 240)
+        y = random.randint(-240, 240)
+        snake_food.goto(x, y)
     snake_move()
     time.sleep(0.1)
 screen.mainloop()
+
