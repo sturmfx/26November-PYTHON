@@ -15,6 +15,7 @@ snake_head.color("red")
 snake_head.penup()
 snake_head.goto(0, 0)
 
+snake_food = turtle.Turtle()
 
 
 def up():
@@ -60,6 +61,10 @@ screen.onkeypress(left, "a")
 
 while True:
     screen.update()
+    if snake_head.xcor() > 250 or snake_head.xcor() < - 250 or snake_head.ycor() > 250 or snake_head.ycor() < -250:
+        time.sleep(3)
+        snake_head.goto(0, 0)
+        snake_head.heading = 0
     snake_move()
     time.sleep(0.1)
 screen.mainloop()
